@@ -6,3 +6,4 @@ sudo make clean install
 - fibonacci
 - gapplesgrid
 - functionalgaps
+- tab
