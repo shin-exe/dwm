@@ -1,0 +1,22 @@
+#!/bin/sh
+
+choices="Shutdown\nHybrid Sleep\nSuspend\nHibernate\nLogout DWM\nReboot\nLock\nLogout"
+
+chosen=$(printf "$choices" | dmenu -i)
+
+FG_COLOR="${FG_COLOR:-#bbbbbb}"
+BG_COLOR="${BG_COLOR:-#1a1a1a}"
+HLFG_COLOR="${HLFG_COLOR:-#111111}"
+HLBG_COLOR="${HLBG_COLOR:-#bbbbbb}"
+BORDER_COLOR="${BORDER_COLOR:-#222222}"
+
+case "$chosen" in
+	"Logout DWM") killall dwm ;;
+	Shutdown) loginctl poweroff ;;
+	Reboot) loginctl reboot ;;
+	Suspend) loginctl suspend ;;
+	Hibernate) loginctl hibernate ;;
+	"Hybrid Sleep") loginctl hybrid-sleep ;;
+	Lock) ${LOCKSCRIPT:-i3lock --color=${BG_COLOR#"#"}} ;;
+	Logout) i3-msg exit ;;
+esac
